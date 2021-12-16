@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="data"
+            type="com.example.appyhighnewsapptask.model.Article" />
+
+        
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/news_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingEnd="@dimen/_6sdp">
+
+
+        <TextView
+            android:id="@+id/news_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@{data.title}"
+            android:textColor="@color/black"
+            android:visibility="@{data.title == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@id/news_poster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="8dp"
+            tools:text="Rivian raises $10.5B in one of the hottest IPOs of 2021" />
+
+        <TextView
+            android:id="@+id/news_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@{data.description}"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/_8sdp"
+            android:visibility="@{data.description == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@id/news_poster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/news_title"
+            tools:text="Everest to bring Canadian biotech's potential COVID shots to China, other markets - Reuters" />
+
+        <FrameLayout
+            android:id="@+id/framelay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/corner_bg"
+            android:backgroundTint="@color/light_grey2"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:visibility="@{data.author == null ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintStart_toStartOf="@id/news_description"
+            app:layout_constraintTop_toBottomOf="@id/news_description">
+
+            <TextView
+                android:id="@+id/news_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_semibold"
+                android:text="@{data.author}"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_6sdp"
+                tools:text="Sampath Houde" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/news_poster"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:image="@{data.urlToImage}"
+            android:visibility="@{data.url == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:background="#808080"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/news_description" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_read"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:fontFamily="@font/raleway_semibold"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:text="Read More"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_6sdp"
+            app:backgroundTint="@color/black"
+            app:cornerRadius="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@id/framelay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/framelay" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

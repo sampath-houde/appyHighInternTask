@@ -7,7 +7,7 @@ class NewsRepo(
     private val api: NewsApi
 ) : BaseRepository(){
 
-    suspend fun getNews(keyword: String, apiKey: String) = safeApiCall {
-        api.getNews(keyword, apiKey)
+    suspend fun getNews(countryCode: String, apiKey: String) = safeApiCall {
+        api.getNews(countryCode, apiKey)
     }
 }

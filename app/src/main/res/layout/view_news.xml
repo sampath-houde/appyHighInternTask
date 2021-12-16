@@ -9,7 +9,7 @@
 
         <variable
             name="data"
-            type="com.example.appyhighnewsapptask.model.Article" />
+            type="com.example.appyhighnewsapptask.model.FilteredArticle" />
 
         
     </data>

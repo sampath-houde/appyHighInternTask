@@ -1,5 +1,8 @@
 package com.example.appyhighnewsapptask.ui
 
+import android.content.Context
+import android.telephony.TelephonyManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +15,7 @@ import kotlinx.coroutines.launch
 
 
 
-class NewsViewModel(private val repository: NewsRepo): ViewModel() {
+class OnlineNewsViewModel(private val repository: NewsRepo): ViewModel() {
 
 
     private val _news_list: MutableLiveData<ApiResponseHandler<NewsResponse>> =
@@ -25,14 +28,9 @@ class NewsViewModel(private val repository: NewsRepo): ViewModel() {
         _news_list.value = repository.getNews(countryCode, apiKey)
     }
 
-    fun setAdsToList(list: List<Article>): MutableList<Article?> {
-        val listWithAds = mutableListOf<Article?>()
-
-        for(i in list.indices) {
-            if(i%3==0) listWithAds.add(null)
-            listWithAds.add(i, list[i])
-        }
-        return listWithAds
+    fun getCountryCode(context: Context): String {
+        val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        return tm.networkCountryIso!!
     }
 
 }

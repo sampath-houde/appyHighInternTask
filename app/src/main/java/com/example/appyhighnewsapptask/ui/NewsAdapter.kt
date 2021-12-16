@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appyhighnewsapptask.R
 import com.example.appyhighnewsapptask.databinding.ViewAdBinding
 import com.example.appyhighnewsapptask.databinding.ViewNewsBinding
-import com.example.appyhighnewsapptask.model.Article
+import com.example.appyhighnewsapptask.model.FilteredArticle
 import com.example.appyhighnewsapptask.utils.OnClickListener
 import com.example.appyhighnewsapptask.utils.RemoteConfigUtils
 
 
 class NewsAdapter(private val listner: OnClickListener): RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
 
-    private var list: List<Article> = emptyList()
+    private var list: List<FilteredArticle> = emptyList()
     private val AD_TYPE = 1
     private val CONTENT = 0
     private val isAdsEnabled = RemoteConfigUtils.isAdmobsEnabled()
@@ -34,7 +34,7 @@ class NewsAdapter(private val listner: OnClickListener): RecyclerView.Adapter<Ne
         }
     }
 
-    fun setData(list: MutableList<Article>) {
+    fun setData(list: List<FilteredArticle>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -42,7 +42,7 @@ class NewsAdapter(private val listner: OnClickListener): RecyclerView.Adapter<Ne
     override fun getItemViewType(position: Int): Int {
         val viewType: Int
         viewType = if(isAdsEnabled)
-            if (position % 4 == 2) AD_TYPE else CONTENT
+            if (position % 4 == 2) AD_TYPE else CONTENT        //Every 4th position ad will be shown and 1st ad will be shown at position 3 because postion starts from 0
         else
             CONTENT
         return viewType

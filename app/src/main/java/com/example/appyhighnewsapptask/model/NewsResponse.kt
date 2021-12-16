@@ -21,3 +21,11 @@ data class Source(
     val id: String?,
     val name: String?
 )
+
+data class FilteredArticle(
+    var author: String?,
+    val description: String?,
+    val title: String?,
+    val url: String?,
+    val urlToImage: String?
+)

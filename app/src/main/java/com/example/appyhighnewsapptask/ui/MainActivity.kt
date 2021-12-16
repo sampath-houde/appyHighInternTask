@@ -12,18 +12,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.appyhighnewsapptask.R
 import com.example.appyhighnewsapptask.api.NewsApi
-import com.example.appyhighnewsapptask.databinding.ActivityMainBinding
 import com.example.appyhighnewsapptask.model.NewsRepo
-import com.example.appyhighnewsapptask.utils.ApiResponseHandler
-import com.example.appyhighnewsapptask.utils.Constants
-import com.example.appyhighnewsapptask.utils.OnClickListener
-import com.example.appyhighnewsapptask.utils.ViewModelFactory
 import com.task.newsapp.utils.RetrofitInstance
 import java.util.*
 import android.telephony.TelephonyManager
-
-
-
+import com.example.appyhighnewsapptask.databinding.ActivityMainBinding
+import com.example.appyhighnewsapptask.databinding.ViewAdBinding
+import com.example.appyhighnewsapptask.model.Article
+import com.example.appyhighnewsapptask.utils.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var viewModel: NewsViewModel
     private lateinit var adapter: NewsAdapter
     private lateinit var countryCode: String
+    private lateinit var remoteConfig: FirebaseRemoteConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +43,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         window?.statusBarColor = ContextCompat.getColor(applicationContext, R.color.white)
+
+
+        MobileAds.initialize(this)
 
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         countryCode = tm.networkCountryIso
@@ -76,9 +82,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 if(articles.isNotEmpty()) {
                                     binding.banner.visibility = View.GONE
                                     binding.recyclerView.visibility = View.VISIBLE
+                                    //val adList = viewModel.setAdsToList(articles)
                                     binding.recyclerView.also {
                                         it.adapter = adapter
-                                        adapter.setData(articles)
+                                        adapter.setData(articles as MutableList<Article>)
                                     }
                                 } else {
                                     binding.recyclerView.visibility = View.GONE
@@ -99,6 +106,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             startActivity(intent)
         } else Toast.makeText(this, "There is no article", Toast.LENGTH_SHORT).show()
 
+    }
+
+    override fun loadAd(adBinding: ViewAdBinding?) {
+        val adRequest = AdRequest.Builder().build()
+        adBinding?.adView?.loadAd(adRequest)
     }
 
 }

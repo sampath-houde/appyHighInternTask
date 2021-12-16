@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "500562980070",
+    "project_id": "appyhighinternshiptask",
+    "storage_bucket": "appyhighinternshiptask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500562980070:android:2570b5ca4ab4590d0e5f27",
+        "android_client_info": {
+          "package_name": "com.example.appyhighnewsapptask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500562980070-tku47u3ia3jqcka4fgesjo2b7utgdpol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appyhighnewsapptask",
+            "certificate_hash": "d6e2bfd4e712178fa3ee80a7e88e9f4670af402c"
+          }
+        },
+        {
+          "client_id": "500562980070-nvdcvqldvp8eqggtc8rd5fs2r56jueqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMvHN7u3K7TghIwpBwxxB80d4Vs4yEiI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500562980070-nvdcvqldvp8eqggtc8rd5fs2r56jueqb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
